@@ -17,9 +17,9 @@ A mobile application that helps users track their assets, savings goals, zakat c
 - Relational database
 
 ## Project Team
-- Ebaa Ali
+- EBAA ALI
 - LUKSA HARUNAH TALHA
-- Fidele Jean
+- FIDELE JEAN
 
 ## Project Status
 Project idea selected. Awaiting approval from Dr. Matsiko.
