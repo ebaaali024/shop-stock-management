@@ -19,7 +19,7 @@ A mobile application that helps users track their assets, savings goals, zakat c
 ## Project Team
 - EBAA ALI
 - LUKSA HARUNAH TALHA
-- FIDELE JEAN
+- NTARAMBIRWA FIDELE 
 
 ## Project Status
 Project idea selected. Awaiting approval from Dr. Matsiko.
