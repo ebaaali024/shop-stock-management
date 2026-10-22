@@ -1,2 +1,2 @@
-# shop-stock-management
+# zakat-savings-tracker
 Mobile App Development Capstone
