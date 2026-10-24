@@ -185,3 +185,59 @@ The data dictionary describes the fields, data types, constraints, and meanings 
 | amount | DECIMAL(12,2) | NOT NULL | Amount of zakat paid |
 | payment_date | DATE | NOT NULL | Date of payment |
 | notes | VARCHAR(255) | NULL allowed | Optional payment notes |
+
+## 7. API Endpoint Documentation
+
+The application will use a REST API to exchange data between the Flutter mobile application and the backend. Data will be sent and received in JSON format. Users must be authenticated before accessing their private financial records.
+
+| Method | Endpoint | Purpose | Request Body | Expected Response |
+|---|---|---|---|---|
+| POST | `/api/auth/register` | Register a new user | `name`, `email`, `password` | User details and success message |
+| POST | `/api/auth/login` | Authenticate a user | `email`, `password` | Access token and user details |
+| GET | `/api/assets` | Retrieve the user's assets | None | List of assets |
+| POST | `/api/assets` | Add a new asset | `asset_name`, `asset_type`, `amount`, `record_date` | Created asset details |
+| GET | `/api/assets/{asset_id}` | Retrieve one asset | None | Asset details |
+| PUT | `/api/assets/{asset_id}` | Update an asset | Updated asset fields | Updated asset details |
+| DELETE | `/api/assets/{asset_id}` | Delete an asset | None | Confirmation message |
+| GET | `/api/savings-goals` | Retrieve savings goals | None | List of savings goals |
+| POST | `/api/savings-goals` | Create a savings goal | `goal_name`, `target_amount`, `current_amount`, `target_date` | Created goal details |
+| PUT | `/api/savings-goals/{goal_id}` | Update a savings goal | Updated goal fields | Updated goal details |
+| DELETE | `/api/savings-goals/{goal_id}` | Delete a savings goal | None | Confirmation message |
+| POST | `/api/zakat/estimate` | Calculate an estimated zakat amount | Relevant financial amounts and calculation settings | Estimated amount and calculation summary |
+| GET | `/api/zakat-payments` | Retrieve zakat payment history | None | List of payment records |
+| POST | `/api/zakat-payments` | Record a zakat payment | `amount`, `payment_date`, `notes` | Created payment details |
+
+### 7.1 Authentication and Security
+
+- The registration endpoint will store passwords as secure password hashes, not plain text.
+- The login endpoint will return an access token after successful authentication.
+- Protected endpoints will require a valid access token.
+- Users will only be allowed to access and modify their own records.
+- The API will validate input and return appropriate HTTP status codes, such as 200 for successful requests, 201 for created records, 400 for invalid input, 401 for unauthenticated requests, 404 for records not found, and 500 for unexpected server errors.
+
+### 7.2 Example JSON Request
+
+The following example shows how a user can add an asset. The amount is entered by the user.
+
+```json
+{
+  "asset_name": "Personal Savings",
+  "asset_type": "Cash",
+  "amount": 500000,
+  "record_date": "2026-10-24"
+}
+```
+
+### 7.3 Example JSON Response
+
+```json
+{
+  "asset_id": 1,
+  "asset_name": "Personal Savings",
+  "asset_type": "Cash",
+  "amount": 500000,
+  "record_date": "2026-10-24"
+}
+```
+
+The example amounts and records are for demonstration only. The actual API will validate the submitted values and associate each record with the authenticated user.
