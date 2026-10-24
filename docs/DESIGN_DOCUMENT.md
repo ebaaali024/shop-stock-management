@@ -13,8 +13,11 @@
 
 **Group Members:**
 - Ebaa Ali
+- 241-22302-7221
 - Luksa Harunah Talha
+- 241-22302-7421
 - Ntarambirwa Fidele
+- 242-22302-7672
 
 **Course:** Mobile App Development Capstone
 
