@@ -53,8 +53,6 @@ Users should be able to:
 
 ### 3.1 Functional Requirements
 
-The system shall:
-
 1. The system shall allow users to register an account using their name, email, and password.
 2. The system shall allow registered users to log in securely.
 3. The system shall allow users to log out of their accounts.
@@ -192,37 +190,43 @@ The data dictionary describes the fields, data types, constraints, and meanings 
 | payment_date | DATE | NOT NULL | Date of payment |
 | notes | VARCHAR(255) | NULL allowed | Optional payment notes |
 
+
 ## 7. API Endpoint Documentation
 
-The application will use a REST API to exchange data between the Flutter mobile application and the backend. Data will be sent and received in JSON format. Users must be authenticated before accessing their private financial records.
+The application will use a REST API to exchange data between the Flutter mobile application and the backend. Data will be sent and received in JSON format. Users must be authenticated before accessing their private financial records. Each authenticated user can access and manage only their own records.
 
 | Method | Endpoint | Purpose | Request Body | Expected Response |
 |---|---|---|---|---|
 | POST | `/api/auth/register` | Register a new user | `name`, `email`, `password` | User details and success message |
 | POST | `/api/auth/login` | Authenticate a user | `email`, `password` | Access token and user details |
-| GET | `/api/assets` | Retrieve the user's assets | None | List of assets |
-| POST | `/api/assets` | Add a new asset | `asset_name`, `asset_type`, `amount`, `record_date` | Created asset details |
-| GET | `/api/assets/{asset_id}` | Retrieve one asset | None | Asset details |
-| PUT | `/api/assets/{asset_id}` | Update an asset | Updated asset fields | Updated asset details |
-| DELETE | `/api/assets/{asset_id}` | Delete an asset | None | Confirmation message |
-| GET | `/api/savings-goals/{goal_id}` | Retrieve one savings goal | None | Savings goal details |
-| PUT | `/api/savings-goals/{goal_id}` | Update a savings goal | Updated goal fields | Updated goal details |
-| DELETE | `/api/savings-goals/{goal_id}` | Delete a savings goal | None | Confirmation message |
-| POST | `/api/zakat/estimate` | Calculate an estimated zakat amount | Relevant financial amounts and calculation settings | Estimated amount and calculation summary |
-| GET | `/api/zakat-payments` | Retrieve zakat payment history | None | List of payment records |
-| POST | `/api/zakat-payments` | Record a zakat payment | `amount`, `payment_date`, `notes` | Created payment details |
+| GET | `/api/assets` | Retrieve all assets belonging to the authenticated user | None | List of assets |
+| POST | `/api/assets` | Create a new asset for the authenticated user | `asset_name`, `asset_type`, `amount`, `record_date` | Created asset details |
+| GET | `/api/assets/{asset_id}` | Retrieve one asset belonging to the authenticated user | None | Asset details |
+| PUT | `/api/assets/{asset_id}` | Update an asset belonging to the authenticated user | Updated asset fields | Updated asset details |
+| DELETE | `/api/assets/{asset_id}` | Delete an asset belonging to the authenticated user | None | Confirmation message |
+| GET | `/api/savings-goals` | Retrieve all savings goals belonging to the authenticated user | None | List of savings goals |
+| POST | `/api/savings-goals` | Create a new savings goal for the authenticated user | `goal_name`, `target_amount`, `current_amount`, `target_date` | Created savings goal details |
+| GET | `/api/savings-goals/{goal_id}` | Retrieve one savings goal belonging to the authenticated user | None | Savings goal details |
+| PUT | `/api/savings-goals/{goal_id}` | Update a savings goal belonging to the authenticated user | Updated goal fields | Updated savings goal details |
+| DELETE | `/api/savings-goals/{goal_id}` | Delete a savings goal belonging to the authenticated user | None | Confirmation message |
+| POST | `/api/zakat/estimate` | Calculate an estimated zakat amount based on the user's eligible assets and applicable calculation settings | Relevant financial amounts and calculation settings | Estimated zakat amount and calculation summary |
+| GET | `/api/zakat-payments` | Retrieve zakat payment history belonging to the authenticated user | None | List of zakat payment records |
+| POST | `/api/zakat-payments` | Record a zakat payment for the authenticated user | `amount`, `payment_date`, `notes` | Created zakat payment details |
 
-### 7.1 Authentication and Security
+### 7.1 API Security and Validation
 
-- The registration endpoint will store passwords as secure password hashes, not plain text.
-- The login endpoint will return an access token after successful authentication.
-- Protected endpoints will require a valid access token.
-- Users will only be allowed to access and modify their own records.
-- The API will validate input and return appropriate HTTP status codes, such as 200 for successful requests, 201 for created records, 400 for invalid input, 401 for unauthenticated requests, 404 for records not found, and 500 for unexpected server errors.
+The API will follow these security and validation principles:
 
-### 7.2 Example JSON Request
+- Passwords will be securely hashed before being stored in the database.
+- Successful login will return an access token for authenticated requests.
+- Protected endpoints will require valid authentication.
+- The backend will verify that users can access or modify only their own records.
+- The backend will validate submitted data, including required fields, valid amounts, and appropriate date formats.
+- The API will return suitable HTTP status codes and error messages for successful requests, invalid input, unauthorized access, missing records, and other errors.
 
-The following example shows how a user can add an asset. The amount is entered by the user.
+### 7.2 Sample API Request
+
+The following example shows a request to create a new asset:
 
 ```json
 {
@@ -233,7 +237,9 @@ The following example shows how a user can add an asset. The amount is entered b
 }
 ```
 
-### 7.3 Example JSON Response
+### 7.3 Sample API Response
+
+The following example shows a successful response after creating an asset:
 
 ```json
 {
@@ -245,7 +251,11 @@ The following example shows how a user can add an asset. The amount is entered b
 }
 ```
 
-The example amounts and records are for demonstration only. The actual API will validate the submitted values and associate each record with the authenticated user.
+These examples illustrate the expected JSON structure. The actual responses will depend on the backend implementation. The backend will associate each record with the authenticated user and validate submitted values before saving them.
+
+### 7.4 Zakat Calculation Note
+
+The zakat estimate endpoint will use the financial information supplied by the user and the applicable calculation settings to produce an estimated amount. The calculation should account for the applicable nisab threshold and zakat rate, while clearly explaining any assumptions used. Users should be able to review the estimate before recording a zakat payment. The estimate and payment history are separate functions: calculating an estimate does not automatically record a payment.
 
 ## 8. Screen Sketches
 
