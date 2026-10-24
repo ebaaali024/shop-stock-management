@@ -140,6 +140,12 @@ Each asset, savings goal, and zakat payment record belongs to one user through t
 
 The database is designed to follow Third Normal Form (3NF). Each table represents one main entity, each table has a primary key, and user information is stored separately from assets, savings goals, and zakat payments. This reduces unnecessary duplication and helps maintain data consistency.
 
+### 5.7 ERD Diagram
+
+The following Entity Relationship Diagram illustrates the four database entities and their relationships.
+
+![Entity Relationship Diagram](erd.png)
+
 ## 6. Data Dictionary
 
 The data dictionary describes the fields, data types, constraints, and meanings of the database tables.
