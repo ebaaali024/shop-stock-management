@@ -241,3 +241,49 @@ The following example shows how a user can add an asset. The amount is entered b
 ```
 
 The example amounts and records are for demonstration only. The actual API will validate the submitted values and associate each record with the authenticated user.
+
+## 8. Screen Sketches
+
+The application will use a simple and user-friendly interface. The following sketches describe the main screens planned for the Flutter mobile application.
+
+### 8.1 Login Screen
+
+- Application name and logo.
+- Email input field.
+- Password input field.
+- Login button.
+- Link to the registration screen.
+- Error message area for invalid login details.
+
+### 8.2 Registration Screen
+
+- Full name input field.
+- Email input field.
+- Password input field.
+- Confirm password input field.
+- Register button.
+- Link to the login screen.
+
+### 8.3 Dashboard Screen
+
+- Welcome message for the logged-in user.
+- Summary of recorded assets.
+- Savings goals summary and progress.
+- Estimated zakat summary.
+- Navigation to Assets, Savings Goals, Zakat Payments, and Profile.
+
+### 8.4 Assets Screen
+
+- List of the user's recorded assets.
+- Button to add a new asset.
+- Input fields for asset name, asset type, amount, and record date.
+- Buttons to save, edit, and delete asset records.
+- Validation messages for incorrect entries.
+
+### 8.5 Savings Goals and Zakat Payments Screens
+
+The Savings Goals screen will allow users to create goals, enter target amounts, update current savings, and view progress towards each goal.
+
+The Zakat Payments screen will allow users to record a payment amount, enter the payment date, add optional notes, and view their previous payment records.
+
+The final screen layouts will be designed to support clear navigation, readable information, and convenient data entry.
