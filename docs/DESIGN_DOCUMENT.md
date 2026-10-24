@@ -144,7 +144,7 @@ The database is designed to follow Third Normal Form (3NF). Each table represent
 
 The following Entity Relationship Diagram illustrates the four database entities and their relationships.
 
-![Entity Relationship Diagram](erd.png)
+![Entity Relationship Diagram](erd2.png)
 
 ## 6. Data Dictionary
 
