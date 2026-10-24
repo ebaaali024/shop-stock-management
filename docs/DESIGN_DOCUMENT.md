@@ -55,18 +55,18 @@ Users should be able to:
 
 The system shall:
 
-1. Allow users to register an account using their name, email, and password.
-2. Allow registered users to log in securely.
-3. Allow users to log out of their accounts.
-4. Allow users to add new asset records.
-5. Allow users to view their recorded assets.
-6. Allow users to update existing asset records.
-7. Allow users to delete asset records.
-8. Allow users to create and manage savings goals.
-9. Allow users to view an estimated zakat amount based on their financial information and calculation settings.
-10. Allow users to record and view zakat payments.
-11. Ensure that users can access only their own financial records.
-12. Validate user input and display appropriate error messages.
+1. The system shall allow users to register an account using their name, email, and password.
+2. The system shall allow registered users to log in securely.
+3. The system shall allow users to log out of their accounts.
+4. The system shall allow users to add new asset records.
+5. The system shall allow users to view their recorded assets.
+6. The system shall allow users to update existing asset records.
+7. The system shall allow users to delete asset records.
+8. The system shall allow users to create, view, update, and delete savings goals.
+9. The system shall calculate an estimated zakat amount based on financial information and calculation settings.
+10. The system shall allow users to record and view zakat payments.
+11. The system shall ensure that users can access only their own financial records.
+12. The system shall validate user input and display appropriate error messages.
 
 ### 3.2 Non-Functional Requirements
 
@@ -75,7 +75,7 @@ The system shall:
 3. **Reliability:** The system shall display appropriate error messages when requests fail or the backend is unavailable.
 4. **Performance:** The system shall respond to normal user requests within a reasonable time under typical usage conditions.
 
-5. ## 4. User Stories
+ ## 4. User Stories
 
 1. As a user, I want to register an account so that I can use the application.
 2. As a registered user, I want to log in securely so that my financial records remain private.
@@ -205,8 +205,7 @@ The application will use a REST API to exchange data between the Flutter mobile 
 | GET | `/api/assets/{asset_id}` | Retrieve one asset | None | Asset details |
 | PUT | `/api/assets/{asset_id}` | Update an asset | Updated asset fields | Updated asset details |
 | DELETE | `/api/assets/{asset_id}` | Delete an asset | None | Confirmation message |
-| GET | `/api/savings-goals` | Retrieve savings goals | None | List of savings goals |
-| POST | `/api/savings-goals` | Create a savings goal | `goal_name`, `target_amount`, `current_amount`, `target_date` | Created goal details |
+| GET | `/api/savings-goals/{goal_id}` | Retrieve one savings goal | None | Savings goal details |
 | PUT | `/api/savings-goals/{goal_id}` | Update a savings goal | Updated goal fields | Updated goal details |
 | DELETE | `/api/savings-goals/{goal_id}` | Delete a savings goal | None | Confirmation message |
 | POST | `/api/zakat/estimate` | Calculate an estimated zakat amount | Relevant financial amounts and calculation settings | Estimated amount and calculation summary |
@@ -294,20 +293,33 @@ The Zakat Payments screen will allow users to record a payment amount, enter the
 
 The final screen layouts will be designed to support clear navigation, readable information, and convenient data entry.
 
+### 8.6 Zakat Payment History Screen
 
-### 8. Screen Sketches
+The payment history screen will allow users to review their previously recorded zakat payments.
 
-The following wireframes illustrate the main screens of the Zakat & Savings Tracker application.
+**Main elements:**
+- Payment amount
+- Payment date
+- Optional payment notes
+- List of previous zakat payments
+- Option to record a new payment
 
-#### 8.1 Login Screen
+### 8.7 Screen Wireframes
+
+The following images illustrate the planned user interface of the application.
+
+#### 8.7.1 Login Screen
+
 ![Login Screen](01_login.png)
 
-#### 8.2 Registration Screen
+#### 8.7.2 Registration Screen
+
 ![Registration Screen](02_registration.png)
 
+#### 8.7.3 Assets Screen
 
-#### 8.4 Asset Management Screen
 ![Assets Screen](04_assets.png)
 
-#### 8.5 Savings Goals and Zakat Screen
+#### 8.7.4 Savings Goals and Zakat Screen
+
 ![Savings Goals and Zakat Screen](05_goals_zakat.png)
