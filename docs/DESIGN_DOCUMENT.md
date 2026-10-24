@@ -293,3 +293,124 @@ The Savings Goals screen will allow users to create goals, enter target amounts,
 The Zakat Payments screen will allow users to record a payment amount, enter the payment date, add optional notes, and view their previous payment records.
 
 The final screen layouts will be designed to support clear navigation, readable information, and convenient data entry.
+
+### 8.6 Login Screen Wireframe
+
+```text
++----------------------------------+
+|       Zakat & Savings Tracker    |
+|                                  |
+|          Welcome Back            |
+|                                  |
+|  Email Address                   |
+|  [________________________]      |
+|                                  |
+|  Password                        |
+|  [________________________]      |
+|                                  |
+|  [          Login           ]    |
+|                                  |
+|  Don't have an account? Sign Up  |
++----------------------------------+
+```
+
+### 8.7 Registration Screen Wireframe
+
+```text
++----------------------------------+
+|          Create Account          |
+|                                  |
+|  Full Name                       |
+|  [________________________]      |
+|                                  |
+|  Email Address                   |
+|  [________________________]      |
+|                                  |
+|  Password                        |
+|  [________________________]      |
+|                                  |
+|  Confirm Password                |
+|  [________________________]      |
+|                                  |
+|  [        Register          ]    |
+|  Already registered? Login       |
++----------------------------------+
+```
+
+### 8.8 Dashboard Screen Wireframe
+
+```text
++----------------------------------+
+|       Zakat & Savings Tracker    |
+|----------------------------------|
+|  Welcome, User                   |
+|                                  |
+|  Total Assets                    |
+|  [ Display Total Amount ]        |
+|                                  |
+|  [ My Assets ]  [ Savings Goals ]|
+|                                  |
+|  [ Calculate Zakat ]              |
+|                                  |
+|  Recent Zakat Payments           |
+|  [ View Payment History ]        |
+|                                  |
+|  Home | Assets | Goals | Profile |
++----------------------------------+
+```
+
+### 8.9 Assets Screen Wireframe
+
+```text
++----------------------------------+
+|            My Assets             |
+|----------------------------------|
+|  Asset Name                      |
+|  [________________________]      |
+|                                  |
+|  Asset Type                      |
+|  [ Select Asset Type       v ]   |
+|                                  |
+|  Amount                          |
+|  [________________________]      |
+|                                  |
+|  Record Date                     |
+|  [________________________]      |
+|                                  |
+|  [ Save ] [ Update ] [ Clear ]   |
+|                                  |
+|  My Asset Records                |
+|  [ View ] [ Edit ] [ Delete ]    |
++----------------------------------+
+```
+
+### 8.10 Savings Goals and Zakat Payments Wireframe
+
+```text
++----------------------------------+
+|      Savings Goals & Zakat       |
+|----------------------------------|
+|  Savings Goal Name               |
+|  [________________________]      |
+|                                  |
+|  Target Amount                   |
+|  [________________________]      |
+|                                  |
+|  Current Amount                  |
+|  [________________________]      |
+|                                  |
+|  [ Save Goal ]                   |
+|                                  |
+|  Zakat Calculator                |
+|  Total Eligible Assets            |
+|  [ Display Amount ]              |
+|                                  |
+|  Estimated Zakat                 |
+|  [ Display Estimate ]            |
+|                                  |
+|  [ Record Payment ]              |
+|  [ View Payment History ]        |
++----------------------------------+
+```
+
+*Note: These wireframes illustrate the proposed layout and main functions of each application screen. The final visual design may change during implementation.*
