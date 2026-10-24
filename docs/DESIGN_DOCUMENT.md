@@ -89,3 +89,99 @@ The system shall:
 10. As a user, I want to record zakat payments so that I can keep a history of payments.
 11. As a user, I want to view my previous zakat payments so that I can review my records.
 12. As a user, I want to log out so that my account is not left open on a shared device.
+
+## 5. Database Design (ERD)
+
+The database will contain four main entities: users, assets, savings_goals, and zakat_payments. Each user can have multiple asset records, multiple savings goals, and multiple zakat payment records.
+
+### 5.1 Entity 1: users
+
+- user_id: INTEGER, Primary Key, auto-increment
+- name: VARCHAR(100), NOT NULL
+- email: VARCHAR(150), UNIQUE, NOT NULL
+- password_hash: VARCHAR(255), NOT NULL
+- created_at: DATETIME, NOT NULL
+
+### 5.2 Entity 2: assets
+
+- asset_id: INTEGER, Primary Key, auto-increment
+- user_id: INTEGER, Foreign Key references users(user_id)
+- asset_name: VARCHAR(100), NOT NULL
+- asset_type: VARCHAR(50), NOT NULL
+- amount: DECIMAL(12,2), NOT NULL
+- record_date: DATE, NOT NULL
+
+### 5.3 Entity 3: savings_goals
+
+- goal_id: INTEGER, Primary Key, auto-increment
+- user_id: INTEGER, Foreign Key references users(user_id)
+- goal_name: VARCHAR(100), NOT NULL
+- target_amount: DECIMAL(12,2), NOT NULL
+- current_amount: DECIMAL(12,2), NOT NULL, default 0
+- target_date: DATE, nullable
+
+### 5.4 Entity 4: zakat_payments
+
+- payment_id: INTEGER, Primary Key, auto-increment
+- user_id: INTEGER, Foreign Key references users(user_id)
+- amount: DECIMAL(12,2), NOT NULL
+- payment_date: DATE, NOT NULL
+- notes: VARCHAR(255), nullable
+
+### 5.5 Relationships and Cardinality
+
+1. One user can have many assets (1:N).
+2. One user can have many savings goals (1:N).
+3. One user can have many zakat payment records (1:N).
+
+Each asset, savings goal, and zakat payment record belongs to one user through the user_id foreign key.
+
+### 5.6 Normalisation
+
+The database is designed to follow Third Normal Form (3NF). Each table represents one main entity, each table has a primary key, and user information is stored separately from assets, savings goals, and zakat payments. This reduces unnecessary duplication and helps maintain data consistency.
+
+## 6. Data Dictionary
+
+The data dictionary describes the fields, data types, constraints, and meanings of the database tables.
+
+### 6.1 Users Table
+
+| Field | Data Type | Constraints | Description |
+|---|---|---|---|
+| user_id | INTEGER | Primary Key, Auto-increment | Unique user identifier |
+| name | VARCHAR(100) | NOT NULL | User's full name |
+| email | VARCHAR(150) | UNIQUE, NOT NULL | User's email address |
+| password_hash | VARCHAR(255) | NOT NULL | Hashed password |
+| created_at | DATETIME | NOT NULL | Account creation date and time |
+
+### 6.2 Assets Table
+
+| Field | Data Type | Constraints | Description |
+|---|---|---|---|
+| asset_id | INTEGER | Primary Key, Auto-increment | Unique asset identifier |
+| user_id | INTEGER | Foreign Key, NOT NULL | Owner of the asset |
+| asset_name | VARCHAR(100) | NOT NULL | Name or description of the asset |
+| asset_type | VARCHAR(50) | NOT NULL | Category of the asset |
+| amount | DECIMAL(12,2) | NOT NULL | Recorded asset value |
+| record_date | DATE | NOT NULL | Date the asset was recorded |
+
+### 6.3 Savings Goals Table
+
+| Field | Data Type | Constraints | Description |
+|---|---|---|---|
+| goal_id | INTEGER | Primary Key, Auto-increment | Unique savings goal identifier |
+| user_id | INTEGER | Foreign Key, NOT NULL | Owner of the goal |
+| goal_name | VARCHAR(100) | NOT NULL | Name of the savings goal |
+| target_amount | DECIMAL(12,2) | NOT NULL | Desired savings amount |
+| current_amount | DECIMAL(12,2) | NOT NULL, DEFAULT 0 | Current saved amount |
+| target_date | DATE | NULL allowed | Planned completion date |
+
+### 6.4 Zakat Payments Table
+
+| Field | Data Type | Constraints | Description |
+|---|---|---|---|
+| payment_id | INTEGER | Primary Key, Auto-increment | Unique payment identifier |
+| user_id | INTEGER | Foreign Key, NOT NULL | User who recorded the payment |
+| amount | DECIMAL(12,2) | NOT NULL | Amount of zakat paid |
+| payment_date | DATE | NOT NULL | Date of payment |
+| notes | VARCHAR(255) | NULL allowed | Optional payment notes |
